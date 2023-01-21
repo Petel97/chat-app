@@ -1,6 +1,9 @@
 <?php  
     // Demarer une session
     session_start();
+    if(isset($_SESSION['user'])){
+        $user = json_decode($_SESSION['user']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +21,10 @@
             min-height: 300px;
             height: 80%;
         }
+        .mh-100 {
+            min-height: 395px;
+            height: 100%;
+        }
         .badge {
             font-size: 14px;
             font-weight: normal;
@@ -31,9 +38,9 @@
 </head>
 <body class="bg-primary">
     <nav class="navbar navbar-expand-lg bg-primary w-50 m-auto" data-bs-theme="dark">
-        <div class="container-fluid<?php if(!isset($_SESSION['username'])):  ?> justify-content-center<?php endif ?>">
+        <div class="container-fluid<?php if(!isset($user)):  ?> justify-content-center<?php endif ?>">
             <a class="navbar-brand" href="#">CHAT APP</a>
-            <?php if(isset($_SESSION['username'])):  ?>
+            <?php if(isset($user)):  ?>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,7 +51,7 @@
                 <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                 <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?= $_SESSION['username'] ?>
+                    <?= $user->username ?>
                 </a>
                 <ul class="dropdown-menu">
                     <li><hr class="dropdown-divider"></li>

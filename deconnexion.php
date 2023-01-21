@@ -1,10 +1,8 @@
 <?php
 session_start();
 
-$_SESSION['username'] = null;
-unset($_SESSION['username']);
-
-var_dump($_SESSION);
+$_SESSION['user'] = null;
+unset($_SESSION['user']);
 
 session_destroy();
 
